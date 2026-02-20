@@ -1,0 +1,183 @@
+rosbag2_bagfile_information:
+  compression_format: ''
+  compression_mode: ''
+  custom_data: null
+  duration:
+    nanoseconds: 3082262309466
+  files:
+  - duration:
+      nanoseconds: 3082262309466
+    message_count: 3589884
+    path: 2023-10-19-14-14-38-filtered_ros2.db3
+    starting_time:
+      nanoseconds_since_epoch: 1697739278741989961
+  message_count: 3589884
+  relative_file_paths:
+  - 2023-10-19-14-14-38-filtered_ros2.db3
+  ros_distro: rosbags
+  starting_time:
+    nanoseconds_since_epoch: 1697739278741989961
+  storage_identifier: sqlite3
+  topics_with_message_count:
+  - message_count: 616334
+    topic_metadata:
+      name: /imu/imu_compensated
+      offered_qos_profiles: []
+      serialization_format: cdr
+      type: sensor_msgs/msg/Imu
+      type_description_hash: RIHS01_7d9a00ff131080897a5ec7e26e315954b8eae3353c3f995c55faf71574000b5b
+  - message_count: 616322
+    topic_metadata:
+      name: /imu/imu_uncompensated
+      offered_qos_profiles: []
+      serialization_format: cdr
+      type: sensor_msgs/msg/Imu
+      type_description_hash: RIHS01_7d9a00ff131080897a5ec7e26e315954b8eae3353c3f995c55faf71574000b5b
+  - message_count: 61647
+    topic_metadata:
+      name: /vehicle/dbw_enabled
+      offered_qos_profiles: []
+      serialization_format: cdr
+      type: std_msgs/msg/Bool
+      type_description_hash: RIHS01_feb91e995ff9ebd09c0cb3d2aed18b11077585839fb5db80193b62d74528f6c9
+  - message_count: 153869
+    topic_metadata:
+      name: /vehicle/brake_report
+      offered_qos_profiles: []
+      serialization_format: cdr
+      type: dbw_mkz_msgs/msg/BrakeReport
+      type_description_hash: RIHS01_b0b659630fad43d797949f045f4757465ed184a6a7972a7a2f944db9bcc222ac
+  - message_count: 154111
+    topic_metadata:
+      name: /vehicle/brake_info_report
+      offered_qos_profiles: []
+      serialization_format: cdr
+      type: dbw_mkz_msgs/msg/BrakeInfoReport
+      type_description_hash: RIHS01_a2ea81fa6e4cd7f13f3caf2f10b637c595d9f30027fa86171cb4c80588362844
+  - message_count: 492898
+    topic_metadata:
+      name: /vehicle/joint_states
+      offered_qos_profiles: []
+      serialization_format: cdr
+      type: sensor_msgs/msg/JointState
+      type_description_hash: RIHS01_a13ee3a330e346c9d87b5aa18d24e11690752bd33a0350f11c5882bc9179260e
+  - message_count: 308230
+    topic_metadata:
+      name: /vehicle/imu/data_raw
+      offered_qos_profiles: []
+      serialization_format: cdr
+      type: sensor_msgs/msg/Imu
+      type_description_hash: RIHS01_7d9a00ff131080897a5ec7e26e315954b8eae3353c3f995c55faf71574000b5b
+  - message_count: 30758
+    topic_metadata:
+      name: /gps/fix
+      offered_qos_profiles: []
+      serialization_format: cdr
+      type: sensor_msgs/msg/NavSatFix
+      type_description_hash: RIHS01_62223ab3fe210a15976021da7afddc9e200dc9ec75231c1b6a557fc598a65404
+  - message_count: 30758
+    topic_metadata:
+      name: /gps/time_reference
+      offered_qos_profiles: []
+      serialization_format: cdr
+      type: sensor_msgs/msg/TimeReference
+      type_description_hash: RIHS01_dd66e84cf40bbb5d5a40472e6ecf2675a031334d4c426abdb2ad41801a8efc99
+  - message_count: 153867
+    topic_metadata:
+      name: /vehicle/throttle_report
+      offered_qos_profiles: []
+      serialization_format: cdr
+      type: dbw_mkz_msgs/msg/ThrottleReport
+      type_description_hash: RIHS01_5106a487d244f9bf3c64b3e659af826c925236e203f0a78710af35c88b3b9a61
+  - message_count: 308218
+    topic_metadata:
+      name: /vehicle/wheel_speed_report
+      offered_qos_profiles: []
+      serialization_format: cdr
+      type: dbw_mkz_msgs/msg/WheelSpeedReport
+      type_description_hash: RIHS01_25bd8bf27cd90e7c5d9809cd1633ad9fa4301db6b7f6cf6c5ca5064020985470
+  - message_count: 61541
+    topic_metadata:
+      name: /vehicle/gear_report
+      offered_qos_profiles: []
+      serialization_format: cdr
+      type: dbw_mkz_msgs/msg/GearReport
+      type_description_hash: RIHS01_acba43aaba9acd269b3c885adf2c4d7180ae109d4951c0c428e891e9646cadac
+  - message_count: 154131
+    topic_metadata:
+      name: /vehicle/wheel_position_report
+      offered_qos_profiles: []
+      serialization_format: cdr
+      type: dbw_mkz_msgs/msg/WheelPositionReport
+      type_description_hash: RIHS01_79a04d3e09b8c22aa28dd82d6bc580cbf17e7bd0547c4274575f81ca8f6d30b3
+  - message_count: 153852
+    topic_metadata:
+      name: /vehicle/steering_report
+      offered_qos_profiles: []
+      serialization_format: cdr
+      type: dbw_mkz_msgs/msg/SteeringReport
+      type_description_hash: RIHS01_3f2b1599960a6fa019acfb3a46594f1f3c3276791427279545b57c88d0466157
+  - message_count: 153852
+    topic_metadata:
+      name: /vehicle/twist
+      offered_qos_profiles: []
+      serialization_format: cdr
+      type: geometry_msgs/msg/TwistStamped
+      type_description_hash: RIHS01_5f0fcd4f81d5d06ad9b4c4c63e3ea51b82d6ae4d0558f1d475229b1121db6f64
+  - message_count: 61541
+    topic_metadata:
+      name: /vehicle/misc_1_report
+      offered_qos_profiles: []
+      serialization_format: cdr
+      type: dbw_mkz_msgs/msg/Misc1Report
+      type_description_hash: RIHS01_13b9614e122228e4a3b68cfc02c0048ff4f4e329b409a6dead558a3e7c4baa4f
+  - message_count: 15843
+    topic_metadata:
+      name: /vehicle/surround_report
+      offered_qos_profiles: []
+      serialization_format: cdr
+      type: dbw_mkz_msgs/msg/SurroundReport
+      type_description_hash: RIHS01_6161b0e9e90e9ae61fec4772f92bc8248d6fbf33e57a84d64cc8d93dfa061f34
+  - message_count: 15843
+    topic_metadata:
+      name: /vehicle/sonar_cloud
+      offered_qos_profiles: []
+      serialization_format: cdr
+      type: sensor_msgs/msg/PointCloud2
+      type_description_hash: RIHS01_9198cabf7da3796ae6fe19c4cb3bdd3525492988c70522628af5daa124bae2b5
+  - message_count: 30967
+    topic_metadata:
+      name: /vehicle/fuel_level_report
+      offered_qos_profiles: []
+      serialization_format: cdr
+      type: dbw_mkz_msgs/msg/FuelLevelReport
+      type_description_hash: RIHS01_8d15e9aa038dd0229cd133df75137f226d52cb9d566ebeb131745ae8c28353a8
+  - message_count: 6164
+    topic_metadata:
+      name: /vehicle/tire_pressure_report
+      offered_qos_profiles: []
+      serialization_format: cdr
+      type: dbw_mkz_msgs/msg/WheelSpeedReport
+      type_description_hash: RIHS01_25bd8bf27cd90e7c5d9809cd1633ad9fa4301db6b7f6cf6c5ca5064020985470
+  - message_count: 3046
+    topic_metadata:
+      name: /vehicle/gps/fix
+      offered_qos_profiles: []
+      serialization_format: cdr
+      type: sensor_msgs/msg/NavSatFix
+      type_description_hash: RIHS01_62223ab3fe210a15976021da7afddc9e200dc9ec75231c1b6a557fc598a65404
+  - message_count: 3046
+    topic_metadata:
+      name: /vehicle/gps/vel
+      offered_qos_profiles: []
+      serialization_format: cdr
+      type: geometry_msgs/msg/TwistStamped
+      type_description_hash: RIHS01_5f0fcd4f81d5d06ad9b4c4c63e3ea51b82d6ae4d0558f1d475229b1121db6f64
+  - message_count: 3046
+    topic_metadata:
+      name: /vehicle/gps/time
+      offered_qos_profiles: []
+      serialization_format: cdr
+      type: sensor_msgs/msg/TimeReference
+      type_description_hash: RIHS01_dd66e84cf40bbb5d5a40472e6ecf2675a031334d4c426abdb2ad41801a8efc99
+  version: 9
