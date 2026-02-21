@@ -6,13 +6,16 @@
 
 ## Problem
 
-GPS gives absolute position but at 10Hz with significant noise and dropout periods. IMU gives motion at 200Hz but integrates drift without correction. Neither is sufficient alone — the EKF fuses both optimally, running at IMU rate and correcting with GPS when available.
+GPS operates at 10Hz with meter-level noise and drops out entirely in urban canyons and tunnels. IMU runs at 200Hz but drift accumulates unboundedly; errors compound with every integration step. Deploying either sensor alone is not an option for reliable vehicle localization.
 
+This is the fundamental challenge in field robotics, bridging the gap between a fast but drifting sensor and a slow but globally accurate one. The EKF solves this: continuous 200Hz state estimation driven by IMU, with GPS corrections applied optimally weighted by each sensor's real-world uncertainty — keeping localization alive through the outages that break single-sensor systems.
+
+Building robust perception systems that work in real-world conditions — not just in simulation — is the engineering problem that matters. This project is a direct demonstration of that: diagnosing real sensor failures, empirically characterizing noise, and engineering a fusion system that maintains reliable localization across a 16.5km urban drive with 500+ seconds of GPS outage.
 ---
 
 ## Approach
 
-**State vector:** `[x, y, θ, vx, vy, omega]`
+**State vector:** `[x, y, theta, vx, vy, omega]`
 
 **Process model:** Constant velocity with gyroscope-driven heading. Position integrates Cartesian velocity, heading integrates gyro angular rate. State transition matrix F propagates uncertainty forward.
 
@@ -64,7 +67,7 @@ gps-imu-ekf-localization/
 │   ├── measurement_model.py  # H matrix, R matrix, correction step
 │   ├── kalman_filter.py      # initialization and main EKF loop
 │   └── utils.py              # UTM conversion, angle normalization
-├── notebook/
+├── ekf/
 │   └── ekf_localization.py   # main script — runs full pipeline
 ├── results/figures/          # output plots
 └── data/
@@ -77,10 +80,10 @@ gps-imu-ekf-localization/
 
 ```bash
 # Step 1 — extract ROS2 bag to pkl (run once)
-python src/extract_pkl.py
+python3 src/extract_pkl.py
 
 # Step 2 — run EKF pipeline
-python notebook/ekf_localization.py
+python3 ekf/ekf_localization.py
 ```
 
 **Dependencies:** `numpy`, `matplotlib`, `utm`, `rclpy` (for bag extraction only)
