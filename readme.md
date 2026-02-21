@@ -11,6 +11,7 @@ GPS operates at 10Hz with meter-level noise and drops out entirely in urban cany
 This is the fundamental challenge in field robotics, bridging the gap between a fast but drifting sensor and a slow but globally accurate one. The EKF solves this: continuous 200Hz state estimation driven by IMU, with GPS corrections applied optimally weighted by each sensor's real-world uncertainty — keeping localization alive through the outages that break single-sensor systems.
 
 Building robust perception systems that work in real-world conditions — not just in simulation — is the engineering problem that matters. This project is a direct demonstration of that: diagnosing real sensor failures, empirically characterizing noise, and engineering a fusion system that maintains reliable localization across a 16.5km urban drive with 500+ seconds of GPS outage.
+
 ---
 
 ## Approach
