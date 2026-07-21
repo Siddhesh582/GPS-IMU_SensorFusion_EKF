@@ -204,3 +204,15 @@ Correct Covariance
     ▼
 Repeat
 ```
+
+F matrix → Jacobian of the motion model; describes how uncertainty in the current state propagates to the next predicted state.
+
+Q matrix → Process noise covariance; represents uncertainty introduced by the motion model itself (model assumptions, unmodeled dynamics, IMU noise, etc.).
+
+P matrix → State covariance matrix; represents the uncertainty of the current state estimate.
+             After prediction: P_pred represents uncertainty of the predicted state.
+             After correction: P_corr represents uncertainty after incorporating measurements.
+
+H matrix → Measurement Jacobian; maps the predicted state into the sensor measurement space and shows which state variables are observed by the sensor.
+
+R matrix → Measurement noise covariance; represents uncertainty in the sensor measurements.
