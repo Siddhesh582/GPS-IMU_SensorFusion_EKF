@@ -21,10 +21,11 @@ def process_covariance(dt, sigma_vx=0.2, sigma_vy=0.2, sigma_omega=0.01):
     ])
     return Q
 
-def process_model(state, imu_gyro_bias_corrected, dt, theta_k):
+#motion model
+def process_model(state, imu_gyro_bias_corrected, dt):
     x, y, theta, vx, vy, omega = state
 
-    omega_imu = imu_gyro_bias_corrected[2]  # yaw rate from gyroscope
+    omega_imu = imu_gyro_bias_corrected[2]  # yaw from gyroscope
 
     # constant velocity model — position integrates velocity
     x_est     = x + vx * dt
@@ -50,8 +51,7 @@ def process_model(state, imu_gyro_bias_corrected, dt, theta_k):
     return state_predicted, F
 
 def prediction_step(state, P, imu_gyro_corrected, dt):
-    theta_current = state[2]
-    state_pred, F = process_model(state, imu_gyro_corrected, dt, theta_current)
+    state_pred, F = process_model(state, imu_gyro_corrected, dt)
     Q             = process_covariance(dt)
     P_pred        = F @ P @ F.T + Q   # propagate uncertainty + add process noise
     return state_pred, P_pred

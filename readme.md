@@ -1,3 +1,5 @@
+I used a simplified EKF motion model and avoided integrating IMU acceleration because accelerometer bias and noise accumulate significantly after double integration. Instead, I used gyro measurements for heading propagation and GPS measurements for position correction. I also assumed vehicle-like motion, where lateral slip is negligible, which is a common non-holonomic constraint for ground vehicles
+
 # GPS-IMU Sensor Fusion with Extended Kalman Filter
 
 6-DoF EKF fusing GPS (10Hz) and IMU (200Hz) for continuous vehicle localization over a 16.5km urban drive with extended GPS outages.

@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 def estimate_bias(imu_accel, imu_gyro, imu_timestamps, stationary_duration=10.0):
     # average first 10 seconds — vehicle stationary, GPS not yet acquired
-    mask       = imu_timestamps < (imu_timestamps[0] + stationary_duration)
+    mask       = imu_timestamps < (imu_timestamps[0] + stationary_duration)   #mask for valid time duration needed to use for bias estimation
     accel_bias = np.mean(imu_accel[mask], axis=0)
     gyro_bias  = np.mean(imu_gyro[mask],  axis=0)
     accel_bias[2] -= 9.81   # remove gravity from Z
@@ -66,5 +66,60 @@ def plot_bias_correction(imu_accel, imu_gyro, imu_timestamps,
     axes[1, 1].grid(True, alpha=0.3)
 
     plt.tight_layout()
-    plt.savefig('../results/figures/bias_correction.png', dpi=150)
+    plt.savefig('/home/sid/GPS-IMU_SensorFusion/results/figures/bias_correction.png', dpi=150)
     plt.show()
+
+
+''' verifying implementation of bias estimation and correction '''
+
+# if __name__ == "__main__":
+#     import pickle 
+
+#     #load pickle data 
+#     DATA_PATH = "/home/sid/GPS-IMU_SensorFusion/data/sensor_data.pkl"
+
+#     with open(DATA_PATH, "rb") as f:
+#         raw = pickle.load(f)
+
+#     imu_accel = raw["imu"]["accel"]
+#     imu_gyro = raw["imu"]["gyro"]
+#     imu_timestamps = raw["imu"]["timestamps"]
+
+#     print("====== RAW DATA ======")
+
+#     print("First 5 acceleration samples:")
+#     print(imu_accel[:5])
+
+#     print("\nFirst 5 gyro samples:")
+#     print(imu_gyro[:5])
+
+#     #average of first 10 seconds
+#     stationary_duration = 10.0
+
+#     mask = imu_timestamps < (imu_timestamps[0] + stationary_duration)
+
+#     raw_accel_mean = np.mean(imu_accel[mask], axis=0)
+#     raw_gyro_mean = np.mean(imu_gyro[mask], axis=0)
+
+#     print(f"Raw accel mean (first {stationary_duration:.0f}s): {raw_accel_mean}")  
+#     print(f"Raw gyro mean : {raw_gyro_mean}")
+
+#     #estimate bias
+#     accel_bias, gyro_bias = estimate_bias(imu_accel, imu_gyro, imu_timestamps, stationary_duration=stationary_duration)
+
+#     # Apply bias correction
+#     imu_accel_corr, imu_gyro_corr = apply_bias(
+#         imu_accel,
+#         imu_gyro,
+#         accel_bias,
+#         gyro_bias
+#     )
+
+
+#     # Check corrected stationary values
+#     corrected_accel_mean = np.mean(imu_accel_corr[mask], axis=0)
+#     corrected_gyro_mean = np.mean(imu_gyro_corr[mask], axis=0)
+
+#     print("\n===== CORRECTED STATIONARY MEAN =====")
+#     print(f"Corrected accel mean: {corrected_accel_mean}")
+#     print(f"Corrected gyro mean : {corrected_gyro_mean}")

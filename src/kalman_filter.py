@@ -13,7 +13,7 @@ def initialize(gps_x, gps_y, gps_timestamps, gps_status):
         raise ValueError("Need at least 2 valid GPS fixes to initialize")
 
     i0, i1 = valid_idx[0], valid_idx[1]
-    x0, y0 = gps_x[i0], gps_y[i0]
+    x0, y0 = gps_x[i0], gps_y[i0]   #first valid GPS position 
     dx      = gps_x[i1] - gps_x[i0]
     dy      = gps_y[i1] - gps_y[i0]
     dt      = gps_timestamps[i1] - gps_timestamps[i0]
@@ -33,19 +33,24 @@ def initialize(gps_x, gps_y, gps_timestamps, gps_status):
 def run(gps_x, gps_y, gps_timestamps, gps_status, imu_gyro_corrected, imu_timestamps):
     state, P, first_valid_gps_idx = initialize(gps_x, gps_y, gps_timestamps, gps_status)
     valid_mask = get_valid_gps_mask(gps_x, gps_y, gps_status)
-    R_xx, R_yy = compute_R(gps_x, gps_y, gps_timestamps, gps_status)
 
     # start filter from first valid GPS timestamp
     start_time    = gps_timestamps[first_valid_gps_idx]
-    start_imu_idx = np.searchsorted(imu_timestamps, start_time)
+    start_imu_idx = np.searchsorted(imu_timestamps, start_time) #get the imu timestamp at that valid GPS measurement timestamp
 
-    n      = len(imu_timestamps)
+    n = len(imu_timestamps)
     states = np.full((n, 6), np.nan)
     states[start_imu_idx] = state
 
     corrections = 0
+    
+    R_xx, R_yy = compute_R(gps_x, gps_y, gps_timestamps, gps_status)
+
+    #run for IMU timestamps after the first valid GPS measurement
     for k in range(start_imu_idx + 1, n):
         dt = imu_timestamps[k] - imu_timestamps[k-1]
+
+        #handle corrupted or missing timestamps
         if dt <= 0 or dt > 1.0:
             dt = 0.01   # fallback for bad timestamps
 

@@ -5,9 +5,9 @@ import pickle
 import numpy as np
 import matplotlib.pyplot as plt
 
-from utils           import gps_to_utm, get_valid_gps_mask
+from utils import gps_to_utm, get_valid_gps_mask
 from bias_estimation import estimate_bias, apply_bias, plot_bias_correction
-from kalman_filter   import run
+from kalman_filter import run
 
 # CONFIG
 DATA_PATH = '/home/sid/GPS-IMU_SensorFusion/data/sensor_data.pkl'
@@ -43,7 +43,7 @@ print(f"First valid GPS at index {first_valid} — {first_valid/10:.1f}s into re
 
 valid_mask = get_valid_gps_mask(gps_x, gps_y, gps_status)
 
-# GPS trajectories — lat/lon and UTM
+# GPS trajectories plot — lat/lon and UTM
 fig, axes = plt.subplots(1, 2, figsize=(14, 5))
 axes[0].plot(gps_lon, gps_lat, 'b.', ms=1, alpha=0.5)
 axes[0].set_title('GPS Trajectory (Lat/Lon)')
@@ -56,32 +56,36 @@ axes[1].set_xlabel('Easting (m)')
 axes[1].set_ylabel('Northing (m)')
 axes[1].axis('equal')
 plt.tight_layout()
-plt.savefig('../results/figures/gps_trajectory.png', dpi=150)
+plt.savefig('/home/sid/GPS-IMU_SensorFusion/results/figures/gps_trajectory.png', dpi=150)
 plt.show()
 
 # IMU — VISUALIZE + BIAS REMOVAL
+
+# imu timestamps relative to 0 
+imu_time = imu_timestamps - imu_timestamps[0]
+
 # Raw IMU plots
 fig, axes = plt.subplots(3, 1, figsize=(14, 9), sharex=True)
-axes[0].plot(imu_timestamps, imu_accel[:, 0], 'r', lw=0.3, label='X')
-axes[0].plot(imu_timestamps, imu_accel[:, 1], 'g', lw=0.3, label='Y')
-axes[0].plot(imu_timestamps, imu_accel[:, 2], 'b', lw=0.3, label='Z')
+axes[0].plot(imu_time, imu_accel[:, 0], 'r', lw=0.3, label='X')
+axes[0].plot(imu_time, imu_accel[:, 1], 'g', lw=0.3, label='Y')
+axes[0].plot(imu_time, imu_accel[:, 2], 'b', lw=0.3, label='Z')
 axes[0].set_ylabel('Accel (m/s²)')
 axes[0].legend()
 
-axes[1].plot(imu_timestamps, imu_gyro[:, 0], 'r', lw=0.3, label='Roll rate')
-axes[1].plot(imu_timestamps, imu_gyro[:, 1], 'g', lw=0.3, label='Pitch rate')
-axes[1].plot(imu_timestamps, imu_gyro[:, 2], 'b', lw=0.3, label='Yaw rate')
+axes[1].plot(imu_time, imu_gyro[:, 0], 'r', lw=0.3, label='Roll rate')
+axes[1].plot(imu_time, imu_gyro[:, 1], 'g', lw=0.3, label='Pitch rate')
+axes[1].plot(imu_time, imu_gyro[:, 2], 'b', lw=0.3, label='Yaw rate')
 axes[1].set_ylabel('Angular Vel (rad/s)')
 axes[1].legend()
 
 accel_mag = np.linalg.norm(imu_accel, axis=1)
-axes[2].plot(imu_timestamps, accel_mag, 'purple', lw=0.3)
+axes[2].plot(imu_time, accel_mag, 'purple', lw=0.3)
 axes[2].axhline(9.81, color='r', ls='--', alpha=0.5, label='Gravity (9.81)')
 axes[2].set_ylabel('|Accel| (m/s²)')
 axes[2].set_xlabel('Time (s)')
 axes[2].legend()
 plt.tight_layout()
-plt.savefig('../results/figures/imu_raw.png', dpi=150)
+plt.savefig('/home/sid/GPS-IMU_SensorFusion/results/figures/imu_raw.png', dpi=150)
 plt.show()
 
 # estimate bias from first 10s — vehicle stationary, GPS not yet acquired
@@ -148,7 +152,7 @@ plt.legend()
 plt.axis('equal')
 plt.grid(True, alpha=0.3)
 plt.tight_layout()
-plt.savefig('../results/figures/ekf_vs_gps_trajectory.png', dpi=150)
+plt.savefig('/home/sid/GPS-IMU_SensorFusion/results/figures/ekf_vs_gps_trajectory.png', dpi=150)
 plt.show()
 
 # X, Y position and heading over time
@@ -180,5 +184,5 @@ ax3.legend()
 ax3.grid(True, alpha=0.3)
 
 plt.tight_layout()
-plt.savefig('../results/figures/position_heading.png', dpi=150)
+plt.savefig('/home/sid/GPS-IMU_SensorFusion/results/figures/position_heading.png', dpi=150)
 plt.show()

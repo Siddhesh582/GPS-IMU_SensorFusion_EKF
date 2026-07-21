@@ -1,4 +1,4 @@
-data/*.pkl data/*.db3 data/*.bag __pycacha__ *.pyc .ipynb_checkpoints
+data/*.pkl data/*.db3 data/*.bag __pycache__ *.pyc .ipynb_checkpoints
 data/*.pkl
 data/**/*.db3
 .vscode/
